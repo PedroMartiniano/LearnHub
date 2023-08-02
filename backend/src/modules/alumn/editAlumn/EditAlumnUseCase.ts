@@ -1,30 +1,31 @@
-import { Alumn } from "../../../types/alumn-data";
 import { prisma } from "../../../lib/prisma";
-import { AppError } from "../../../error/AppError";
+import { Alumn } from "../../../types/alumn-data";
 
-export class CreateAlumnUseCase {
-    async execute(alumn: Alumn) {
+export class EditAlumnUseCase {
+    async execute(alumn: Alumn, id: string) {
         try {
             const { first_name, last_name, cpf } = alumn
-            const regis_date = new Date()
 
-            await prisma.alumn.create({
+            await prisma.alumn.update({
+                where: {
+                    id
+                },
                 data: {
                     first_name,
                     last_name,
-                    cpf,
-                    regis_date
+                    cpf
                 }
             })
 
             return ({
                 success: true,
-                message: "Alumn successfully created"
+                message: "alumn successfully edited"
             })
+
         } catch {
             return ({
                 success: false,
-                message: "Something went wrong"
+                message: "something went wrong"
             })
         }
     }

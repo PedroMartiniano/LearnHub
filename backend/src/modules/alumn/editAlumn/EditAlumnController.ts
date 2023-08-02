@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import { AppError } from "../../../error/AppError";
-import { CreateAlumnUseCase } from "./CreateAlumnUseCase";
 import { GetAlumnByCpfUseCase } from "../getAlumnByCpf/GetAlumnByCpfUseCase";
+import { GetAlumnByIdUseCase } from "../getAlumnById/GetAlumnByIdUseCase";
+import { EditAlumnUseCase } from "./EditAlumnUseCase";
 
-export class CreateAlumnController {
+export class EditAlumnController {
     async handle(req: Request, res: Response) {
+        const { id } = req.params
         const { first_name, last_name, cpf } = req.body
 
         if (!first_name || typeof first_name !== "string") {
@@ -28,23 +29,26 @@ export class CreateAlumnController {
             })
         }
 
-        const getAlumnByCpf = new GetAlumnByCpfUseCase
-        const alumn = await getAlumnByCpf.execute(cpf)
+        const getALumn = new GetAlumnByCpfUseCase
+        const AlumnCpf = await getALumn.execute(cpf)
 
-        if (alumn) {
-            return res.status(400).json({
-                success: false,
-                message: "Cpf already exists"
-            })
+        if (AlumnCpf) {
+            if (AlumnCpf.id !== id) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Cpf Already exists"
+                })
+            }
         }
 
-        const createAlumnUseCase = new CreateAlumnUseCase
-        const result = await createAlumnUseCase.execute({ first_name, last_name, cpf })
+        const editAlumn = new EditAlumnUseCase
+        const alumn = await editAlumn.execute({first_name, last_name, cpf}, id)
 
-        if (!result.success) {
-            return res.status(400).json(result.message)
+        if(!alumn.success){
+            return res.status(400).json(alumn.message)
         }
 
-        return res.status(201).json(result.message)
+        return res.status(200).json(alumn.message)
+
     }
 }

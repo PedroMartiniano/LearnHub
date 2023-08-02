@@ -1,14 +1,13 @@
-import { Alumn } from "../../../types/alumn-data";
 import { prisma } from "../../../lib/prisma";
-import { AppError } from "../../../error/AppError";
+import { Staff } from "../../../types/staff-data";
 
-export class CreateAlumnUseCase {
-    async execute(alumn: Alumn) {
+export class CreateStaffUseCase {
+    async execute(staff: Staff) {
         try {
-            const { first_name, last_name, cpf } = alumn
+            const { first_name, last_name, cpf } = staff
             const regis_date = new Date()
 
-            await prisma.alumn.create({
+            await prisma.staff.create({
                 data: {
                     first_name,
                     last_name,
@@ -19,13 +18,15 @@ export class CreateAlumnUseCase {
 
             return ({
                 success: true,
-                message: "Alumn successfully created"
+                message: "Staff successfully created"
             })
+
         } catch {
             return ({
                 success: false,
-                message: "Something went wrong"
+                message: "something went wrong"
             })
         }
+
     }
 }

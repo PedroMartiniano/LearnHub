@@ -14,7 +14,7 @@ model Alumn {
   id               String    @id @default(uuid())
   first_name       String
   last_name        String
-  cpf              String
+  cpf              String   @unique
   regis_date       DateTime
   status           Int       @default(1)
 
@@ -25,7 +25,7 @@ model Staff {
   id              String    @id @default(uuid())
   first_name      String
   last_name       String
-  cpf             String
+  cpf             String    @unique
   regis_date      DateTime
   status          Int       @default(1) 
 
