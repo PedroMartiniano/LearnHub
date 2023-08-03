@@ -8,7 +8,7 @@ export class CreateAlumnUseCase {
             const { first_name, last_name, cpf } = alumn
             const regis_date = new Date()
 
-            await prisma.alumn.create({
+            const AlumnData = await prisma.alumn.create({
                 data: {
                     first_name,
                     last_name,
@@ -17,15 +17,10 @@ export class CreateAlumnUseCase {
                 }
             })
 
-            return ({
-                success: true,
-                message: "Alumn successfully created"
-            })
+            return AlumnData
+
         } catch {
-            return ({
-                success: false,
-                message: "Something went wrong"
-            })
+            return null
         }
     }
 }

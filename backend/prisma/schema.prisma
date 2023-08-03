@@ -36,12 +36,12 @@ model Users {
   id          String  @id @default(uuid())
   email       String  @unique
   password    String
-  id_alumn    String
-  id_staff    String
+  id_alumn    String?
+  id_staff    String?
   status      Int     @default(1)
 
-  alumn       Alumn @relation(fields: [id_alumn], references: [id])
-  staff       Staff @relation(fields: [id_staff], references: [id])
+  alumn       Alumn? @relation(fields: [id_alumn], references: [id])
+  staff       Staff? @relation(fields: [id_staff], references: [id])
 }
 
 model Course {

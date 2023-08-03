@@ -7,7 +7,7 @@ export class CreateStaffUseCase {
             const { first_name, last_name, cpf } = staff
             const regis_date = new Date()
 
-            await prisma.staff.create({
+            const staffData = await prisma.staff.create({
                 data: {
                     first_name,
                     last_name,
@@ -16,17 +16,10 @@ export class CreateStaffUseCase {
                 }
             })
 
-            return ({
-                success: true,
-                message: "Staff successfully created"
-            })
+            return staffData
 
         } catch {
-            return ({
-                success: false,
-                message: "something went wrong"
-            })
+            return null
         }
-
     }
 }
