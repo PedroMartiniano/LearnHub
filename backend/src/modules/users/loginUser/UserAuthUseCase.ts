@@ -6,7 +6,7 @@ import "dotenv";
 export class UserAuthUseCase {
     async execute(user: UserLogin) {
         try {
-            const { id, hashPassword, password } = user
+            const { id, hashPassword, password, id_user } = user
 
             const isPasswordCorrect = await compare(password, hashPassword)
 
@@ -23,8 +23,8 @@ export class UserAuthUseCase {
                     success: false
                 })
             }
-
-            const token = sign({ id }, key, { expiresIn: '1d' })
+            
+            const token = sign({ id, id_user }, key, { expiresIn: '1d' })
 
             return ({
                 token,

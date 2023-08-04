@@ -48,7 +48,7 @@ model Course {
   id            String  @id @default(uuid())
   name          String
   description   String
-  rating        String
+  rating        Float
   image         String
   price         Float
   status        Int     @default(1) 

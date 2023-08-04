@@ -4,8 +4,14 @@ import { EditStaffUseCase } from "./EditStaffUseCase";
 
 export class EditStaffController {
     async handle(req: Request, res: Response) {
-        const { id } = req.params
-        const { first_name, last_name, cpf } = req.body
+        const { id_user, first_name, last_name, cpf } = req.body
+
+        if (!id_user) {
+            return res.status(400).json({
+                success: false,
+                message: "missing id body param"
+            })
+        }
 
         if (!first_name || typeof first_name !== "string") {
             return res.status(400).json({
@@ -32,7 +38,7 @@ export class EditStaffController {
         const staffCpf = await getStaffByCpf.execute(cpf)
 
         if (staffCpf) {
-            if (staffCpf.id !== id) {
+            if (staffCpf.id !== id_user) {
                 return res.status(400).json({
                     success: false,
                     message: "Cpf already exists"
@@ -41,7 +47,7 @@ export class EditStaffController {
         }
 
         const editStaff = new EditStaffUseCase
-        const staff = await editStaff.execute({ first_name, last_name, cpf }, id)
+        const staff = await editStaff.execute({ first_name, last_name, cpf }, id_user)
 
         if (!staff.success) {
             return res.status(400).json(staff.message)
