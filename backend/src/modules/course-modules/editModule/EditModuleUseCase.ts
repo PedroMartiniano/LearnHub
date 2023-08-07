@@ -1,28 +1,23 @@
 import { prisma } from "../../../lib/prisma";
-import { CourseData } from "../../../types/course-data";
+import { ModuleData } from "../../../types/module-data";
 
-export class EditCourseUseCase {
-    async execute(course: CourseData, id: string) {
+export class EditModuleUseCase {
+    async execute(name: string, description: string, id: string) {
         try {
-            const { name, description, image, price } = course
-
-            await prisma.course.update({
+            await prisma.module.update({
                 where: {
                     id
                 },
                 data: {
                     name,
-                    description,
-                    image,
-                    price
+                    description
                 }
             })
 
             return ({
                 success: true,
-                message: "Course successfully edited"
+                message: "Module successfully edited"
             })
-
         } catch {
             return ({
                 success: false,

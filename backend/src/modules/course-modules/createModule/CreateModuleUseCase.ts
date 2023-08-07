@@ -1,24 +1,23 @@
 import { prisma } from "../../../lib/prisma";
-import { CourseData } from "../../../types/course-data";
+import { ModuleData } from "../../../types/module-data";
 
-export class CreateCourseUseCase {
-    async execute(course: CourseData) {
+export class CreateModuleUseCase {
+    async execute(modules: ModuleData) {
         try {
-            const { name, description, image, price } = course
-            
-            await prisma.course.create({
+            const { name, description, order, id_course } = modules
+
+            await prisma.module.create({
                 data: {
                     name,
                     description,
-                    rating: 0,
-                    image,
-                    price
+                    order,
+                    id_course
                 }
             })
 
             return ({
                 success: true,
-                message: "Course created successfully",
+                message: "Module successfully created"
             })
         } catch {
             return ({

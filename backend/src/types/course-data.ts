@@ -1,4 +1,4 @@
-export interface Course_data {
+export interface CourseData {
     name: string,
     description: string,
     image: string,

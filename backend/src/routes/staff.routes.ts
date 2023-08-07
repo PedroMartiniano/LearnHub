@@ -12,11 +12,12 @@ const getStaffs = new GetStaffsUseCase
 const deleteStaff = new DeleteStaffController
 const editStaff = new EditStaffController
 
-staffRouter.use(ensureAuth)
 
 staffRouter.post('/create', (req, res) => {
     createStaff.handle(req, res)
 })
+
+staffRouter.use(ensureAuth)
 
 staffRouter.get('/all', (req, res) => {
     getStaffs.execute(res)
