@@ -4,17 +4,17 @@ import { GetAlumnByIdUseCase } from "../getAlumnById/GetAlumnByIdUseCase";
 
 export class DeleteAlumnController {
     async handle(req: Request, res: Response) {
-        const { id } = req.params
+        const { id_user } = req.body
 
-        if (!id) {
+        if (!id_user) {
             return res.status(400).json({
                 success: false,
-                message: "missing id param"
+                message: "missing id_user body param"
             })
         }
 
         const getAlumn = new GetAlumnByIdUseCase
-        const alumnStatus = await getAlumn.execute(id)
+        const alumnStatus = await getAlumn.execute(id_user)
 
         if(alumnStatus?.status === 0) {
             return res.status(400).json({
@@ -24,7 +24,7 @@ export class DeleteAlumnController {
         }
 
         const deleteAlumn = new DeleteAlumnUseCase
-        const deleted = await deleteAlumn.execute(id)
+        const deleted = await deleteAlumn.execute(id_user)
 
         if (!deleted.success) {
             return res.status(400).json(deleted.message)

@@ -22,10 +22,10 @@ alumnRouter.get('/all', (req, res) => {
     getAlumn.execute(res)
 })
 
-alumnRouter.delete('/delete/:id', (req, res) => {
+alumnRouter.delete('/delete', (req, res) => {
     deleteAlumn.handle(req, res)
 })
 
-alumnRouter.put('/update/:id', (req, res) => {
+alumnRouter.put('/update', (req, res) => {
     editAlumn.handle(req, res)
 })

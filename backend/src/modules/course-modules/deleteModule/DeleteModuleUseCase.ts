@@ -3,9 +3,9 @@ import { prisma } from "../../../lib/prisma";
 export class DeleteModuleUseCase {
     async execute(id: string) {
         try {
-            await prisma.module.update({
+            await prisma.module.updateMany({
                 where: {
-                    id
+                    id_course: id
                 },
                 data: {
                     status: 0
@@ -14,7 +14,7 @@ export class DeleteModuleUseCase {
 
             return ({
                 success: true,
-                message: "Module successfully deleted"
+                message: "Modules successfully deleted"
             })
         } catch {
             return ({

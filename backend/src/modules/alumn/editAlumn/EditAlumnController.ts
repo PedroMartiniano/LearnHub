@@ -5,8 +5,7 @@ import { EditAlumnUseCase } from "./EditAlumnUseCase";
 
 export class EditAlumnController {
     async handle(req: Request, res: Response) {
-        const { id } = req.params
-        const { first_name, last_name, cpf } = req.body
+        const { first_name, last_name, cpf, id_user } = req.body
 
         if (!first_name || typeof first_name !== "string") {
             return res.status(400).json({
@@ -33,7 +32,7 @@ export class EditAlumnController {
         const AlumnCpf = await getALumn.execute(cpf)
 
         if (AlumnCpf) {
-            if (AlumnCpf.id !== id) {
+            if (AlumnCpf.id !== id_user) {
                 return res.status(400).json({
                     success: false,
                     message: "Cpf Already exists"
@@ -42,7 +41,7 @@ export class EditAlumnController {
         }
 
         const editAlumn = new EditAlumnUseCase
-        const alumn = await editAlumn.execute({first_name, last_name, cpf}, id)
+        const alumn = await editAlumn.execute({first_name, last_name, cpf}, id_user)
 
         if(!alumn.success){
             return res.status(400).json(alumn.message)
