@@ -71,7 +71,8 @@ model Module {
 
 model Test {
   id            String  @id @default(uuid())
-  question      String
+  question      String  
+  answers       String
   right_answer  String
   id_module     String
   status        Int     @default(1)
