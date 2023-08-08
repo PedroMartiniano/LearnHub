@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { GetCourseByIdUseCase } from "../getCourseById/GetCourseByIdUseCase";
 import { DeleteCourseUseCase } from "./DeleteCourseUseCase";
 import { DeleteModuleUseCase } from "../../course-modules/deleteModule/DeleteModuleUseCase";
+import { GetCourseUseCase } from "../getCourse/getCourseUseCase";
 
 export class DeleteCourseController {
     async handle(req: Request, res: Response) {
@@ -14,7 +14,7 @@ export class DeleteCourseController {
             })
         }
 
-        const getCourse = new GetCourseByIdUseCase
+        const getCourse = new GetCourseUseCase
         const courseStatus = await getCourse.execute(id)
 
         if (courseStatus?.status === 0) {
