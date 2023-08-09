@@ -7,10 +7,11 @@ import { courseRouter } from "./course.routes"
 import { modulesRouter } from "./modules.routes"
 import { testsRouter } from "./testsModules.routes"
 import { getMeAlumnRouter } from "./meAlumn.routes"
+import { purchaseRoutes } from "./purchase.routes"
 
 export const router = Router()
 
-router.use('/alumn', alumnRouter)
+router.use('/alumn', alumnRouter, purchaseRoutes)
 router.use('/staff', staffRouter)
 router.use('/users', usersRouter)
 router.use('/get-me-staff', getMeStaffRouter)

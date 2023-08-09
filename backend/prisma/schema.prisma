@@ -79,3 +79,11 @@ model Test {
 
   module        Module @relation(fields: [id_module], references: [id])
 }
+
+model Purchase {
+  id            String    @id @default(uuid())
+  id_alumn      String
+  id_course     String
+  purchase_date DateTime
+  status        Int       @default(1)
+}
