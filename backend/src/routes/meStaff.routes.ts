@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { ensureAuth } from "../middleware/ensureAuth";
 import { GetMeByIdController } from "../modules/users/getMeById/getMeByIdController";
+import { ensureAuthStaff } from "../middleware/ensureAuthStaff";
 
-export const getMeRouter = Router()
+export const getMeStaffRouter = Router()
 
 const getUser = new GetMeByIdController
 
-getMeRouter.use(ensureAuth)
+getMeStaffRouter.use(ensureAuthStaff)
 
-getMeRouter.get('/get-me', (req, res) => {
+getMeStaffRouter.get('/', (req, res) => {
     getUser.handle(req, res)
 })

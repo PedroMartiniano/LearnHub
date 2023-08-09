@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { GetUsersUseCase } from "../modules/users/getUsers/getUsersUseCase";
-import { ensureAuth } from "../middleware/ensureAuth";
 import { UserAuthController } from "../modules/users/loginUser/UserAuthController";
 
 export const usersRouter = Router()

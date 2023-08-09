@@ -3,9 +3,9 @@ import { CreateCourseController } from "../modules/course/createCourse/CreateCou
 import { GetCoursesUseCase } from "../modules/course/getCourses/getCoursesUseCase";
 import { EditCourseController } from "../modules/course/editCourse/EditCourseController";
 import { DeleteCourseController } from "../modules/course/deleteCourse/DeleteCourseController";
-import { ensureAuth } from "../middleware/ensureAuth";
 import { SearchCourseController } from "../modules/course/searchCourse/SearchCourseController";
 import { GetCourseByIdUseCase } from "../modules/course/getCourseById/GetCourseByIdUseCase";
+import { ensureAuthStaff } from "../middleware/ensureAuthStaff";
 
 export const courseRouter = Router()
 
@@ -15,6 +15,8 @@ const editCourse = new EditCourseController
 const deleteCourse = new DeleteCourseController
 const searchCourse = new SearchCourseController
 const getCourseById = new GetCourseByIdUseCase
+
+
 
 courseRouter.get('/all', (req, res) => {
     getCourses.execute(res)
@@ -28,12 +30,11 @@ courseRouter.get('/search', (req, res) => {
     searchCourse.handle(req, res)
 })
 
-courseRouter.use(ensureAuth)
+courseRouter.use(ensureAuthStaff)
 
 courseRouter.post('/create', (req, res) => {
     createCourse.handle(req, res)
 })
-
 
 courseRouter.put('/update/:id', (req, res) => {
     editCourse.handle(req, res)

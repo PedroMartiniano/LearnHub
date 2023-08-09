@@ -29,7 +29,6 @@ export class UserAuthController {
         if (user.id_alumn) {
             id_user = user.id_alumn
         }
-
         if (user.id_staff) {
             id_user = user.id_staff
         }

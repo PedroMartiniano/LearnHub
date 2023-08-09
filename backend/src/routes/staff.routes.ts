@@ -3,7 +3,7 @@ import { CreateStaffController } from "../modules/staff/createStaff/CreateStaffC
 import { GetStaffsUseCase } from "../modules/staff/getStaffs/getStaffsUseCase";
 import { DeleteStaffController } from "../modules/staff/deleteStaff/DeleteStaffController";
 import { EditStaffController } from "../modules/staff/editStaff/EditStaffController";
-import { ensureAuth } from "../middleware/ensureAuth";
+import { ensureAuthStaff } from "../middleware/ensureAuthStaff";
 
 export const staffRouter = Router()
 
@@ -12,12 +12,11 @@ const getStaffs = new GetStaffsUseCase
 const deleteStaff = new DeleteStaffController
 const editStaff = new EditStaffController
 
+staffRouter.use(ensureAuthStaff)
 
 staffRouter.post('/create', (req, res) => {
     createStaff.handle(req, res)
 })
-
-staffRouter.use(ensureAuth)
 
 staffRouter.get('/all', (req, res) => {
     getStaffs.execute(res)

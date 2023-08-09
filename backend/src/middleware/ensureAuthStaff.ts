@@ -3,7 +3,7 @@ import { verify } from "jsonwebtoken";
 import "dotenv";
 import { AppError } from "../error/AppError";
 
-export function ensureAuth(req: Request, res: Response, next: NextFunction) {
+export function ensureAuthStaff(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization
 
     if (!authHeader) {
@@ -13,7 +13,7 @@ export function ensureAuth(req: Request, res: Response, next: NextFunction) {
     const [, token] = authHeader.split(" ")
 
     try {
-        const key: string | undefined = process.env.tokenkey
+        const key: string | undefined = process.env.tokenKeyStaff
 
         if (!key) {
             throw new Error("Key Token is missing")
@@ -24,6 +24,6 @@ export function ensureAuth(req: Request, res: Response, next: NextFunction) {
         req.body.id_user = response.id_user
         next()
     } catch {
-        throw new AppError("Something went wrong")
+        throw new AppError("Something went wrong (Maybe you're an Alumn).")
     }
 }

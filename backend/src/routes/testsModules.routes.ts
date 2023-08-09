@@ -3,6 +3,7 @@ import { CreateTestController } from "../modules/modules-tests/createTests/Creat
 import { GetTestsByModuleController } from "../modules/modules-tests/getTestsByModule/GetTestsByModuleController";
 import { EditTestController } from "../modules/modules-tests/editTest/EditTestController";
 import { DeleteTestController } from "../modules/modules-tests/deleteTest/DeleteTestController";
+import { ensureAuthStaff } from "../middleware/ensureAuthStaff";
 
 export const testsRouter = Router()
 

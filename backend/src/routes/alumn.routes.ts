@@ -3,7 +3,7 @@ import { CreateAlumnController } from "../modules/alumn/createAlumn/CreateAlumnC
 import { GetAlumnsUseCase } from "../modules/alumn/getAlumns/GetAlumnsUseCase"
 import { DeleteAlumnController } from "../modules/alumn/deleteAlumn/DeleteAlumnController"
 import { EditAlumnController } from "../modules/alumn/editAlumn/EditAlumnController"
-import { ensureAuth } from "../middleware/ensureAuth"
+import { ensureAuthAlumn } from "../middleware/ensureAuthAlumn"
 
 export const alumnRouter = Router()
 
@@ -16,7 +16,7 @@ alumnRouter.post('/create', (req, res) => {
     createAlumn.handle(req, res)
 })
 
-alumnRouter.use(ensureAuth)
+alumnRouter.use(ensureAuthAlumn)
 
 alumnRouter.get('/all', (req, res) => {
     getAlumn.execute(res)
