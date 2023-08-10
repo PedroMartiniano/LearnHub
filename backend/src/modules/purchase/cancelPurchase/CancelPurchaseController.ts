@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { GetAlumnByIdUseCase } from "../../alumn/getAlumnById/GetAlumnByIdUseCase";
-import { CreatePurchaseUseCase } from "./CreatePurchaseUseCase";
 import { GetCourseUseCase } from "../../course/getCourse/getCourseUseCase";
+import { GetAlumnByIdUseCase } from "../../alumn/getAlumnById/GetAlumnByIdUseCase";
 import { GetAlCuPurchaseUseCase } from "../getAlumnCoursePurchase/GetAlCuPurchaseUseCase";
+import { CancelPurchaseUseCase } from "./CancelPurchaseUseCase";
 
-export class CreatePurchaseController {
+export class CancelPurchaseController {
     async handle(req: Request, res: Response) {
         const { id_user } = req.body
         const { id_course } = req.params
@@ -36,7 +36,7 @@ export class CreatePurchaseController {
         const getCourse = new GetCourseUseCase
         const course = await getCourse.execute(id_course)
 
-        if(!course || course.status === 0){
+        if (!course || course.status === 0) {
             return res.status(400).json({
                 success: false,
                 message: "Course disabled"
@@ -44,21 +44,21 @@ export class CreatePurchaseController {
         }
 
         const getAlumnAndCourse = new GetAlCuPurchaseUseCase
-        const isAlumnHaveThisCourse = await getAlumnAndCourse.execute(id_user, id_course)
+        const purchase = await getAlumnAndCourse.execute(id_user, id_course)
 
-        if(isAlumnHaveThisCourse.success){
+        if (!purchase.success || purchase.purchase?.status === 0) {
             return res.status(400).json({
                 success: false,
-                message: "Alumn already buyed this course"
+                message: "Something is wrong in your purchase"
             })
         }
 
-        const createPurchase = new CreatePurchaseUseCase
-        const purchase = await createPurchase.execute({ id_user, id_course })
+        const cancelPurchase = new CancelPurchaseUseCase
+        const purchaseCanceled = await cancelPurchase.execute(id_user, id_course)
 
-        if (!purchase.success) {
-            return res.status(400).json(purchase.message)
+        if(!purchaseCanceled.success){
+            return res.status(400).json(purchaseCanceled.message)
         }
-        return res.status(201).json(purchase.message)
+        return res.status(200).json(purchaseCanceled.message)
     }
 }

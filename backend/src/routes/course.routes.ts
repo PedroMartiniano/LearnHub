@@ -6,6 +6,7 @@ import { DeleteCourseController } from "../modules/course/deleteCourse/DeleteCou
 import { SearchCourseController } from "../modules/course/searchCourse/SearchCourseController";
 import { GetCourseByIdUseCase } from "../modules/course/getCourseById/GetCourseByIdUseCase";
 import { ensureAuthStaff } from "../middleware/ensureAuthStaff";
+import { GetCoursePurchaseUseCase } from "../modules/purchase/getCoursePurchase/GetCoursePurchaseUseCase";
 
 export const courseRouter = Router()
 
@@ -15,8 +16,7 @@ const editCourse = new EditCourseController
 const deleteCourse = new DeleteCourseController
 const searchCourse = new SearchCourseController
 const getCourseById = new GetCourseByIdUseCase
-
-
+const getCoursePurchases = new GetCoursePurchaseUseCase
 
 courseRouter.get('/all', (req, res) => {
     getCourses.execute(res)
@@ -42,4 +42,8 @@ courseRouter.put('/update/:id', (req, res) => {
 
 courseRouter.delete('/delete/:id', (req, res) => {
     deleteCourse.handle(req, res)
+})
+
+courseRouter.get('/purchase/course/:id_course', (req, res) => {
+    getCoursePurchases.execute(req, res)
 })
