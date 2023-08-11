@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { GetModuleOrderUseCase } from "../getModuleOrder/getModuleOrderUseCase";
 import { EditModuleUseCase } from "./EditModuleUseCase";
 
 export class EditModuleController {

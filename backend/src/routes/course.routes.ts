@@ -7,6 +7,7 @@ import { SearchCourseController } from "../modules/course/searchCourse/SearchCou
 import { GetCourseByIdUseCase } from "../modules/course/getCourseById/GetCourseByIdUseCase";
 import { ensureAuthStaff } from "../middleware/ensureAuthStaff";
 import { GetCoursePurchaseUseCase } from "../modules/purchase/getCoursePurchase/GetCoursePurchaseUseCase";
+import { GetCourseModulesUseCase } from "../modules/course-modules/getCourseModules/GetCourseModulesUseCase";
 
 export const courseRouter = Router()
 
@@ -17,6 +18,8 @@ const deleteCourse = new DeleteCourseController
 const searchCourse = new SearchCourseController
 const getCourseById = new GetCourseByIdUseCase
 const getCoursePurchases = new GetCoursePurchaseUseCase
+const getCourseModules = new GetCourseModulesUseCase
+
 
 courseRouter.get('/all', (req, res) => {
     getCourses.execute(res)
@@ -28,6 +31,10 @@ courseRouter.get('/get/:id', (req, res) => {
 
 courseRouter.get('/search', (req, res) => {
     searchCourse.handle(req, res)
+})
+
+courseRouter.get('/module/:id_course', (req, res) => {
+    getCourseModules.execute(req, res)
 })
 
 courseRouter.use(ensureAuthStaff)
