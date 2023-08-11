@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { CreatePurchaseController } from "../modules/purchase/createPurchase/CreatePurchaseController";
 import { GetPurchasesByAlumnController } from "../modules/purchase/getPurchases/GetPurchasesByAlumnController";
 import { CancelPurchaseController } from "../modules/purchase/cancelPurchase/CancelPurchaseController";
+import { CreatePurchaseController } from "../modules/purchase/CreatePurchase/CreatePurchaseController";
 
 export const purchaseRoutes = Router()
 

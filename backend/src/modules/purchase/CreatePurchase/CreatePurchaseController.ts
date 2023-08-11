@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { GetAlumnByIdUseCase } from "../../alumn/getAlumnById/GetAlumnByIdUseCase";
-import { CreatePurchaseUseCase } from "./CreatePurchaseUseCase";
 import { GetCourseUseCase } from "../../course/getCourse/getCourseUseCase";
 import { GetAlCuPurchaseUseCase } from "../getAlumnCoursePurchase/GetAlCuPurchaseUseCase";
+import { CreatePurchaseUseCase } from "./CreatePurchaseUseCase";
 
 export class CreatePurchaseController {
     async handle(req: Request, res: Response) {
