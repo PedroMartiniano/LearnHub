@@ -8,7 +8,8 @@ export class GetCourseModulesUseCase {
 
             const courseModules = await prisma.module.findMany({
                 where: {
-                    id_course
+                    id_course,
+                    status: 1
                 }
             })
 

@@ -35,5 +35,6 @@ modulesRouter.put('/module/update/:id', (req, res) => {
     editModule.handle(req, res)
 })
 
-modulesRouter.put('/module/delete/:id', (req, res) => {
+modulesRouter.delete('/module/delete/:id', (req, res) => {
+    deleteModule.execute(req, res)
 })
