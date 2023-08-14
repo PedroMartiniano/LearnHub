@@ -5,7 +5,8 @@ export class GetModuleByIdCourseUseCase {
         try {
             const modules = await prisma.module.findMany({
                 where:{
-                    id_course: id
+                    id_course: id,
+                    status: 1
                 }
             })
 
