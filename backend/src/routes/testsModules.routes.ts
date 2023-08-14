@@ -4,6 +4,7 @@ import { GetTestsByModuleController } from "../modules/modules-tests/getTestsByM
 import { EditTestController } from "../modules/modules-tests/editTest/EditTestController";
 import { DeleteTestController } from "../modules/modules-tests/deleteTest/DeleteTestController";
 import { ensureAuthStaff } from "../middleware/ensureAuthStaff";
+import { prisma } from "../lib/prisma";
 
 export const testsRouter = Router()
 

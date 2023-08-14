@@ -10,7 +10,7 @@ export class GetModulesWithCourseUseCase {
                 INNER JOIN Course C ON M.id_course = C.id
                 WHERE M.id_course = C.id AND C.status = 1
             `
-
+            
             return res.status(200).json(course_modules)
         } catch {
             return res.status(400).json(null)

@@ -4,7 +4,11 @@ import { prisma } from "../../../lib/prisma";
 export class GetCoursesUseCase {
     async execute(res: Response) {
         try {
-            const courses = await prisma.course.findMany()
+            const courses = await prisma.course.findMany({
+                where: {
+                    status: 1
+                }
+            })
 
             return res.status(200).json(courses)
         } catch {

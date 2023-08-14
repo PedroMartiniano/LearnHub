@@ -3,6 +3,7 @@ import { GetAlumnByIdUseCase } from "../../alumn/getAlumnById/GetAlumnByIdUseCas
 import { GetTestByIdUseCase } from "../../modules-tests/getTestById/GetTestByIdUseCase";
 import { VerifyAlumnAnswerUseCase } from "../verifyAlumnAnswer/VerifyAlumnAnswerUseCase";
 import { RegisterAlumnAnswerUseCase } from "./RegisterAlumnAnswerUseCase";
+import { GetAlumnAnswersUseCase } from "../getAlumnAnswer/GetAlumnAnswerUseCase";
 
 export class RegisterAlumnAnswerController {
     async handle(req: Request, res: Response) {
@@ -47,6 +48,16 @@ export class RegisterAlumnAnswerController {
             return res.status(400).json({
                 success: false,
                 message: "Something went wrong with your test"
+            })
+        }
+
+        const getAlumnAnswer = new GetAlumnAnswersUseCase
+        const isAlumnAlreadyAnswered = await getAlumnAnswer.execute(id_test, id_user)
+
+        if(isAlumnAlreadyAnswered){
+            return res.status(400).json({
+                success: false,
+                message: "Alumn already answered this test"
             })
         }
 

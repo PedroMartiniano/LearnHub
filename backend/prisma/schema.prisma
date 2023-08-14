@@ -78,6 +78,7 @@ model Test {
   answers       String
   right_answer  String
   id_module     String
+  createdAt     DateTime @default(now())
   status        Int     @default(1)
 
   module        Module @relation(fields: [id_module], references: [id])
@@ -91,7 +92,7 @@ model AlumnAnswer {
   id_test       String
   alumn_answer  String
   is_right      Boolean
-  answer_date   DateTime
+  answer_date   DateTime @default(now())
 
   alumn         Alumn @relation(fields: [id_alumn], references: [id])
   test          Test  @relation(fields: [id_test], references: [id])
