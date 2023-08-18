@@ -14,8 +14,8 @@ const deleteAlumn = new DeleteAlumnController
 const editAlumn = new EditAlumnController
 const getAlumnById = new GetAlumnByIdRouter
 
-alumnRouter.post('/create', (req, res) => {
-    createAlumn.handle(req, res)
+alumnRouter.post('/create', (req, res, next) => {
+    createAlumn.handle(req, res, next)
 })
 
 alumnRouter.use(ensureAuthAlumn)
