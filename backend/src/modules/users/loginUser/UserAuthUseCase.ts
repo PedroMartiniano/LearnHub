@@ -1,8 +1,8 @@
 import { UserLogin } from "../../../types/user-login-data";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
-import "dotenv";
 import { GetAlumnByIdUseCase } from "../../alumn/getAlumnById/GetAlumnByIdUseCase";
+import { env } from "../../../env";
 
 export class UserAuthUseCase {
     async execute(user: UserLogin) {
@@ -22,9 +22,9 @@ export class UserAuthUseCase {
 
             let key: string | undefined = ''
             if (!isAlumn) {
-                key = process.env.tokenKeyStaff
+                key = env.TOKENKEYSTAFF
             } else {
-                key = process.env.tokenKeyAlumn
+                key = env.TOKENKEYALUMN
             }
 
             if (!key) {

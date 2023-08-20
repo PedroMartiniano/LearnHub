@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
-import "dotenv";
 import { AppError } from "../error/AppError";
+import {env} from '../env'
 
 export function ensureAuthStaff(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization
@@ -13,7 +13,7 @@ export function ensureAuthStaff(req: Request, res: Response, next: NextFunction)
     const [, token] = authHeader.split(" ")
 
     try {
-        const key: string | undefined = process.env.tokenKeyStaff
+        const key: string | undefined = env.TOKENKEYSTAFF
 
         if (!key) {
             throw new Error("Key Token is missing")

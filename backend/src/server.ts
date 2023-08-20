@@ -1,4 +1,5 @@
 import { app } from "./app"
 import "express-async-errors"
+import { env } from "./env"
 
-app.listen(3333, () => console.log('Server up and running on port 3333.'))
+app.listen(env.PORT, () => console.log('Server up and running on port 3333.'))
