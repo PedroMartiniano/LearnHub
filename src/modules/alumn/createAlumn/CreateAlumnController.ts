@@ -21,7 +21,7 @@ export class CreateAlumnController {
         if(!alumnData.success) {
             return res.status(400).json({
                 success: false,
-                message: alumnData.error
+                message: 'Body params wrong'
             })
         }
 
