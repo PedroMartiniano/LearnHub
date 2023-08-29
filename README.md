@@ -8,7 +8,9 @@ para acessar o servidor API, a URL padrão é https://server-learnhub.onrender.c
 Nela você pode criar usuários, realizar logins, entre diversas outras funcionalidades!
 ## Endpoints
 ### POST /alumn/create
-Endpoint responsável por cadastrar um novo aluno na API(disponível para teste em https://server-learnhub.onrender.com/alumn/create
+Endpoint responsável por cadastrar um novo aluno na API.
+
+Disponível para teste em: https://server-learnhub.onrender.com/alumn/create
 #### Parâmetros
 first_name: Primeiro nome do aluno
 last_name: ultimo nome do aluno
