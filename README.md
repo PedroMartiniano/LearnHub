@@ -13,9 +13,13 @@ Endpoint responsável por cadastrar um novo aluno na API.
 Disponível para teste em: https://server-learnhub.onrender.com/alumn/create
 #### Parâmetros
 first_name: Primeiro nome do aluno
+
 last_name: ultimo nome do aluno
+
 cpf: cpf do aluno(exatamente 11 caracteres)
+
 email: email do aluno(necessário ser um email válido)
+
 password: senha do aluno(mínimo 6 caracteres)
 
 Exemplo:
