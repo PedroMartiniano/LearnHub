@@ -29,6 +29,5 @@ Exemplo:
 #### Resposta
 ##### Created! 201
 Retorna uma mensagem de sucesso caso o usuário for criado corretamente!
-Ou
 ##### Error! 400
 Retorna uma mensagem de erro caso o usuário não for cadastrado
