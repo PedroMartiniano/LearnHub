@@ -6,10 +6,10 @@ Foi utilizado o ambiente docker para virtualização do banco de dados enquanto 
 porém, no momento o banco de dados já está hospedado virtualmente, assim como o servidor!
 para acessar o servidor API, a URL padrão é https://server-learnhub.onrender.com.
 Nela você pode criar usuários, realizar logins, entre diversas outras funcionalidades!
-##Endpoints
+## Endpoints
 ### POST /alumn/create
 Endpoint responsável por cadastrar um novo aluno na API(disponível para teste em https://server-learnhub.onrender.com/alumn/create
-####Parâmetros
+#### Parâmetros
 first_name: Primeiro nome do aluno
 last_name: ultimo nome do aluno
 cpf: cpf do aluno(exatamente 11 caracteres)
@@ -26,7 +26,7 @@ Exemplo:
 	"password": "123456"
 }
 ```
-####Resposta
+#### Resposta
 ##### Created! 201
 Retorna uma mensagem de sucesso caso o usuário for criado corretamente!
 Ou
