@@ -36,4 +36,39 @@ Exemplo:
 ##### Created! 201
 Retorna uma mensagem de sucesso caso o usuário for criado corretamente!
 ##### Error! 400
-Retorna uma mensagem de erro caso o usuário não for cadastrado
+Retorna uma mensagem de erro caso o usuário não for cadastrado.
+
+### POST /users/login
+Endpoint responsável por realizar o login de um aluno cadastrado.
+
+Disponível para teste em: https://server-learnhub.onrender.com/user/login
+#### Parâmetros
+email: email do usuário cadastrado
+
+password: senha do usuário cadastrado
+
+Exemplo:
+```
+{
+	"email": "alumn@gmail.com",
+	"password": "123456"
+}
+```
+#### Resposta
+##### OK! 200
+Retorna o token de acesso do usuário
+Exemplo:
+```
+{
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQyYzY1ZjFkLTgyNTctNGRlYi1hZTI2LTgwM2Y2MmQ0MDAxMSIsImlkX3VzZXIiOiIwZWZjZTk4My05OTIwLTRiMTgtOGZjNy0xMzEzYTg4MmZlYTAiLCJpYXQiOjE2OTM0MDQ5ODMsImV4cCI6MTY5MzQ5MTM4M30.EDJWaFNxDgkHWfc63k86SLsxxDCVjK7S4H7lmXn7X-I"
+}
+```
+#### Bad Request! 400
+Retorna uma messagem de acesso negado.
+Exemplo:
+```
+{
+	"success": false,
+	"message": "Email or password invalid"
+}
+```
