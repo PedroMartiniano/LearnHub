@@ -56,7 +56,8 @@ Exemplo:
 ```
 #### Resposta
 ##### OK! 200
-Retorna o token de acesso do usuário
+Retorna o token de acesso do usuário.
+
 Exemplo:
 ```
 {
@@ -65,6 +66,7 @@ Exemplo:
 ```
 #### Bad Request! 400
 Retorna uma messagem de acesso negado.
+
 Exemplo:
 ```
 {
